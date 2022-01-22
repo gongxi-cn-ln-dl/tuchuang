@@ -3,30 +3,33 @@ using namespace std;
 
 int n;
 
-bool Used(int a,int A[],int x){
-	for(int i = 1;i<=a;i++){
-		if(A[i]==x) return true;
+bool isUsed(int A[],int x,int t){
+	for(int i = 0;i<x;i++){
+		if(A[i]==t) return true;
 	}
 	return false;
 }
-void f(int a,int A[]){
-	if(a>n){
-		for(int i = 1;i<=n;i++){
-			printf("%d ",A[i]);
-		}
-		printf("\n");
-		return;
+void print(int A[]){
+	for(int i = 0;i<n;i++){
+		printf("%5d",A[i]);
+	}
+	printf("\n");
+}
+int f(int A[],int x){
+	if(x == n){
+		print(A);
+		return 0;
 	}
 	for(int i = 1;i<=n;i++){
-		if(Used(a,A,i)) continue;
-		A[a] = i;
-		f(a+1,A);
+		if(isUsed(A,x,i)) continue;
+		A[x] = i;
+		f(A,x+1);
 	}
 }
+
 int main(){
 	scanf("%d",&n);
-	int A[50];
-	f(1,A);
+	int A[15] = {0};
+	f(A,0);
 	return 0;
 }
-
